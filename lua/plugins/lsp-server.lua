@@ -151,7 +151,20 @@ return {
                 },
                 terraformls = {},
                 lua_ls = {},
-                rust_analyzer = {},
+                rust_analyzer = {
+                    settings = {
+                        ["rust-analyzer"] = {
+                            check = {
+                                command = "clippy",
+                                extraArgs = {
+                                    "--",
+                                    "--no-deps",
+                                    "-Wclippy::all",
+                                },
+                            },
+                        },
+                    },
+                },
             }
 
             for server, opts in pairs(lsp_servers) do
