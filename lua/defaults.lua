@@ -22,7 +22,7 @@ vim.cmd([[
 ]])
 
 -- Stop vim's crazy formatting when pasting with the mouse
-vim.opt.pastetoggle = "<F5>"
+--vim.opt.pastetoggle = "<F5>"
 
 -- Reload file if modified
 vim.opt.autoread = true
