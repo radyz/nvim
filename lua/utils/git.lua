@@ -1,6 +1,9 @@
-local G = {}
+local M = {}
 
-G.get_line_hash_range = function(rev)
+--- Calculates a git hash range from rev input.
+--- @param rev string
+--- @return string|nil
+M.get_line_hash_range = function(rev)
     local text_util = require("utils.text")
     local line = vim.fn.getline(".")
 
@@ -31,4 +34,4 @@ G.get_line_hash_range = function(rev)
     end
 end
 
-return G
+return M
