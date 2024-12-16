@@ -219,9 +219,16 @@ return {
     },
     {
         "numToStr/Comment.nvim",
+        tag = "v0.8.0",
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
-            { "JoosepAlviste/nvim-ts-context-commentstring", opts = {} },
+            {
+                "JoosepAlviste/nvim-ts-context-commentstring",
+                commit = "1b212c2eee76d787bbea6aa5e92a2b534e7b4f8f",
+                opts = {
+                    enabled_autocmd = false,
+                },
+            },
         },
         opts = function()
             return {
