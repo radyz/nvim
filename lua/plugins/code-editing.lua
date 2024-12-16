@@ -1,7 +1,7 @@
 local constants = require("constants")
 
 return {
-    "https://github.com/mattn/emmet-vim.git",
+    { "https://github.com/mattn/emmet-vim.git", commit = "6c511a8d7d2863066f32e25543e2bb99d505172c" },
     {
         "nvim-treesitter/nvim-treesitter",
         dependencies = {
