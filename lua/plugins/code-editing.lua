@@ -120,6 +120,7 @@ return {
     },
     {
         "mhartington/formatter.nvim",
+        commit = "eb89a1f3e079f1b9680bc7293b75fffccb5e1598",
         cmd = { "FormatWrite" },
         opts = function()
             return {
