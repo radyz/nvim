@@ -100,7 +100,7 @@ return {
     },
     {
         "andersevenrud/nvim_context_vt",
-        lazy = false,
+        commit = "03fb506bbd5fdbb2b21ac6b0fe38ed40e339b143",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
@@ -110,6 +110,7 @@ return {
 
             return {
                 enabled = false,
+                prefix = "",
                 disable_ft = List({ "markdown" }):concat(constants.ignored_buffer_types),
             }
         end,
