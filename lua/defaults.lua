@@ -21,9 +21,6 @@ vim.cmd([[
   :syntax sync minlines=64
 ]])
 
--- Stop vim's crazy formatting when pasting with the mouse
---vim.opt.pastetoggle = "<F5>"
-
 -- Reload file if modified
 vim.opt.autoread = true
 
