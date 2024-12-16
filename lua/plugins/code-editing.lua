@@ -4,48 +4,48 @@ return {
     { "https://github.com/mattn/emmet-vim.git", commit = "6c511a8d7d2863066f32e25543e2bb99d505172c" },
     {
         "nvim-treesitter/nvim-treesitter",
+        tag = "v0.9.3",
         dependencies = {
-            "nvim-treesitter/nvim-treesitter-textobjects",
+            { "nvim-treesitter/nvim-treesitter-textobjects", commit = "ad8f0a472148c3e0ae9851e26a722ee4e29b1595" },
         },
         build = ":TSUpdate",
-        config = function()
-            require("nvim-treesitter.configs").setup({
-                ensure_installed = "all",
-                ignore_install = { "phpdoc" },
-                highlight = {
+        opts = {
+            ensure_installed = "all",
+            ignore_install = { "phpdoc" },
+            highlight = {
+                enable = true,
+                -- Disable slow treesitter highlight for large files
+                disable = function(_, buf)
+                    local max_filesize = 100 * 1024 -- 100 KB
+                    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+                    if ok and stats and stats.size > max_filesize then
+                        return true
+                    end
+                end,
+            },
+            matchup = {
+                enable = true,
+            },
+            textobjects = {
+                select = {
                     enable = true,
-                    -- Disable slow treesitter highlight for large files
-                    disable = function(_, buf)
-                        local max_filesize = 100 * 1024 -- 100 KB
-                        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-                        if ok and stats and stats.size > max_filesize then
-                            return true
-                        end
-                    end,
-                },
-                matchup = {
-                    enable = true,
-                },
-                textobjects = {
-                    select = {
-                        enable = true,
-                        -- Automatically jump forward to textobj, similar to targets.vim
-                        lookahead = true,
-                        keymaps = {
-                            ["of"] = "@function.outer",
-                            ["if"] = "@function.inner",
-                            ["oc"] = "@class.outer",
-                            ["ic"] = "@class.inner",
-                            ["ob"] = "@block.outer",
-                            ["ib"] = "@block.inner",
-                            ["op"] = "@parameter.inner",
-                            ["ip"] = "@parameter.inner",
-                        },
+                    -- Automatically jump forward to textobj, similar to targets.vim
+                    lookahead = true,
+                    keymaps = {
+                        ["of"] = "@function.outer",
+                        ["if"] = "@function.inner",
+                        ["oc"] = "@class.outer",
+                        ["ic"] = "@class.inner",
+                        ["ob"] = "@block.outer",
+                        ["ib"] = "@block.inner",
+                        ["op"] = "@parameter.inner",
+                        ["ip"] = "@parameter.inner",
                     },
                 },
-            })
-        end,
+            },
+        },
         init = function()
+            -- Used for ts/csharp nodes
             local ts = require("vim.treesitter")
 
             ts.query.add_directive("set_if_eq!", function(match, pattern, bufnr, predicate, metadata)
