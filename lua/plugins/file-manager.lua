@@ -1,6 +1,154 @@
 return {
     {
+        "nvim-pack/nvim-spectre",
+        commit = "08be31c104df3b4b049607694ebb2b6ced4f928b",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        cmd = {
+            "Spectre",
+        },
+        keys = {
+            {
+                "q",
+                function()
+                    require("spectre").close()
+                end,
+                mode = "n",
+                desc = "[Text] Close search",
+                ft = { "spectre_panel" },
+                noremap = true,
+            },
+        },
+        commander = {
+            {
+                desc = "[Text] Search & Replace",
+                cmd = function()
+                    require("spectre").open_visual({ select_word = true })
+                end,
+            },
+            {
+                desc = "[Text] Search & Replace file",
+                cmd = function()
+                    require("spectre").open_file_search({ select_word = true })
+                end,
+            },
+        },
+    },
+    {
+        "nvim-telescope/telescope.nvim",
+        tag = "0.1.8",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            {
+                "nvim-telescope/telescope-fzf-native.nvim",
+                commit = "dae2eac9d91464448b584c7949a31df8faefec56",
+                build = "make",
+            },
+            { "s1n7ax/nvim-window-picker", tag = "v2.0.3" },
+        },
+        lazy = false,
+        opts = {
+            defaults = {
+                mappings = {
+                    i = {
+                        ["<c-n>"] = "nop",
+                        ["<c-p>"] = "nop",
+                        ["<c-j>"] = "move_selection_next",
+                        ["<c-k>"] = "move_selection_previous",
+                    },
+                    n = {
+                        ["q"] = "close",
+                        ["]"] = "cycle_previewers_next",
+                        ["["] = "cycle_previewers_prev",
+                    },
+                },
+                get_selection_window = function(picker, entry)
+                    local picked_window_id = require("window-picker").pick_window({
+                        filter_rules = {
+                            include_current_win = true,
+                        },
+                    }) or vim.api.nvim_get_current_win()
+
+                    return picked_window_id
+                end,
+            },
+            pickers = {
+                buffers = {
+                    mappings = {
+                        n = {
+                            ["dd"] = "delete_buffer",
+                        },
+                    },
+                    theme = "ivy",
+                },
+                git_branches = {
+                    mappings = {
+                        i = {
+                            ["<c-a>"] = "nop",
+                            ["<c-d>"] = "nop",
+                            ["<c-b>"] = "git_create_branch",
+                            ["dd"] = "git_delete_branch",
+                        },
+                        n = {
+                            ["<c-a>"] = "nop",
+                            ["<c-d>"] = "nop",
+                            ["<c-b>"] = "git_create_branch",
+                            ["dd"] = "git_delete_branch",
+                        },
+                    },
+                },
+            },
+            extensions = {
+                fzf = {
+                    fuzzy = true,
+                    override_generic_sorter = true,
+                    override_file_sorter = true,
+                    case_mode = "smart_case",
+                },
+            },
+        },
+        keys = {
+            {
+                "ff",
+                ":Telescope find_files previewer=false theme=dropdown<CR>",
+                desc = "[File] Find file",
+                mode = "n",
+                noremap = true,
+            },
+            { "fl", ":Telescope live_grep<CR>", desc = "[File] Find text", mode = "n", noremap = true },
+            {
+                "fw",
+                ":Telescope grep_string initial_mode=normal<CR>",
+                desc = "[File] Find word",
+                mode = "n",
+                noremap = true,
+            },
+            {
+                "fb",
+                ":Telescope buffers initial_mode=normal<CR>",
+                desc = "[File] Find buffer",
+                mode = "n",
+                noremap = true,
+            },
+            {
+                "fd",
+                ":Telescope diagnostics bufnr=0 initial_mode=normal theme=ivy<CR>",
+                desc = "[File] Find diagnostics",
+                mode = "n",
+                noremap = true,
+            },
+        },
+        init = function()
+            require("telescope").load_extension("fzf")
+
+            -- Add line numbering to preview buffers
+            vim.cmd("autocmd User TelescopePreviewerLoaded setlocal number")
+        end,
+    },
+    {
         "nvim-tree/nvim-tree.lua",
+        tag = "v1.9.0",
         lazy = false,
         dependencies = {
             "nvim-tree/nvim-web-devicons",
@@ -52,7 +200,9 @@ return {
 
                 local function wrap_cwd_context(f)
                     return function(node, ...)
-                        node = node or require("nvim-tree.lib").get_node_at_cursor()
+                        local core = require("nvim-tree.core")
+                        local explorer = core.get_explorer()
+                        node = node or explorer["get_node_at_cursor"](explorer, ...)
 
                         local cwd = "."
                         if node.type == "directory" then
@@ -166,113 +316,6 @@ return {
             { "<leader>nt", ":NvimTreeToggle<CR>", desc = "[Tree] Toggle tree", mode = "n", noremap = true },
             { "<leader>nf", ":NvimTreeFindFile<CR>", desc = "[Tree] Find file", mode = "n", noremap = true },
         },
-    },
-    {
-        "nvim-telescope/telescope.nvim",
-        tag = "0.1.4",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-            { "s1n7ax/nvim-window-picker" },
-        },
-        lazy = false,
-        opts = {
-            defaults = {
-                mappings = {
-                    i = {
-                        ["<c-n>"] = "nop",
-                        ["<c-p>"] = "nop",
-                        ["<c-j>"] = "move_selection_next",
-                        ["<c-k>"] = "move_selection_previous",
-                    },
-                    n = {
-                        ["q"] = "close",
-                        ["]"] = "cycle_previewers_next",
-                        ["["] = "cycle_previewers_prev",
-                    },
-                },
-                get_selection_window = function(picker, entry)
-                    local picked_window_id = require("window-picker").pick_window({
-                        filter_rules = {
-                            include_current_win = true,
-                        },
-                    }) or vim.api.nvim_get_current_win()
-
-                    return picked_window_id
-                end,
-            },
-            pickers = {
-                buffers = {
-                    mappings = {
-                        n = {
-                            ["dd"] = "delete_buffer",
-                        },
-                    },
-                    theme = "ivy",
-                },
-                git_branches = {
-                    mappings = {
-                        i = {
-                            ["<c-a>"] = "nop",
-                            ["<c-d>"] = "nop",
-                            ["<c-b>"] = "git_create_branch",
-                            ["dd"] = "git_delete_branch",
-                        },
-                        n = {
-                            ["<c-a>"] = "nop",
-                            ["<c-d>"] = "nop",
-                            ["<c-b>"] = "git_create_branch",
-                            ["dd"] = "git_delete_branch",
-                        },
-                    },
-                },
-            },
-            extensions = {
-                fzf = {
-                    fuzzy = true,
-                    override_generic_sorter = true,
-                    override_file_sorter = true,
-                    case_mode = "smart_case",
-                },
-            },
-        },
-        keys = {
-            {
-                "ff",
-                ":Telescope find_files previewer=false theme=dropdown<CR>",
-                desc = "[File] Find file",
-                mode = "n",
-                noremap = true,
-            },
-            { "fl", ":Telescope live_grep<CR>", desc = "[File] Find text", mode = "n", noremap = true },
-            {
-                "fw",
-                ":Telescope grep_string initial_mode=normal<CR>",
-                desc = "[File] Find word",
-                mode = "n",
-                noremap = true,
-            },
-            {
-                "fb",
-                ":Telescope buffers initial_mode=normal<CR>",
-                desc = "[File] Find buffer",
-                mode = "n",
-                noremap = true,
-            },
-            {
-                "fd",
-                ":Telescope diagnostics bufnr=0 initial_mode=normal theme=ivy<CR>",
-                desc = "[File] Find diagnostics",
-                mode = "n",
-                noremap = true,
-            },
-        },
-        init = function()
-            require("telescope").load_extension("fzf")
-
-            -- Add line numbering to preview buffers
-            vim.cmd("autocmd User TelescopePreviewerLoaded setlocal number")
-        end,
     },
     {
         "https://github.com/radyz/harpoon.git",

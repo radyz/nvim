@@ -37,41 +37,6 @@ return {
         },
     },
     {
-        "nvim-pack/nvim-spectre",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-        cmd = {
-            "Spectre",
-        },
-        keys = {
-            {
-                "q",
-                function()
-                    require("spectre").close()
-                end,
-                mode = "n",
-                desc = "[Text] Close search",
-                ft = { "spectre_panel" },
-                noremap = true,
-            },
-        },
-        commander = {
-            {
-                desc = "[Text] Search & Replace",
-                cmd = function()
-                    require("spectre").open_visual({ select_word = true })
-                end,
-            },
-            {
-                desc = "[Text] Search & Replace file",
-                cmd = function()
-                    require("spectre").open_file_search({ select_word = true })
-                end,
-            },
-        },
-    },
-    {
         "nvimdev/hlsearch.nvim",
         event = "BufRead",
         opts = {},
