@@ -60,7 +60,7 @@ return {
     },
     {
         "stevearc/aerial.nvim",
-        tag = "v.2.3.1",
+        tag = "v2.3.1",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
