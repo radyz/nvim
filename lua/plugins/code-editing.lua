@@ -48,7 +48,7 @@ return {
             -- Used for ts/csharp nodes
             local ts = require("vim.treesitter")
 
-            ts.query.add_directive("set_if_eq!", function(match, pattern, bufnr, predicate, metadata)
+            ts.query.add_directive("set_if_eq!", function(match, _, bufnr, predicate, metadata)
                 local _, key, capture_id, rhs = unpack(predicate)
 
                 local node = match[capture_id]
@@ -60,6 +60,7 @@ return {
     },
     {
         "stevearc/aerial.nvim",
+        tag = "v.2.3.1",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
@@ -73,9 +74,7 @@ return {
                 ignore = {
                     filetypes = List({ "markdown" }):concat(constants.ignored_buffer_types),
                 },
-                post_parse_symbol = function(bufnr, item, ctx)
-                    local ts = require("vim.treesitter")
-
+                post_parse_symbol = function(_, item, ctx)
                     if ctx.backend_name == "treesitter" then
                         if ctx.match.private then
                             item.name = " " .. item.name
