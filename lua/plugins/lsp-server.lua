@@ -141,9 +141,9 @@ return {
         init = function()
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
             local lsp_servers = {
-                tsserver = {},
+                ts_ls = {},
                 pyright = {},
-                ruff_lsp = {
+                ruff = {
                     on_attach = function(client, _)
                         -- Disable hover in favor of Pyright
                         client.server_capabilities.hoverProvider = false
