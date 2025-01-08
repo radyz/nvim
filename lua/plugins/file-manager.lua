@@ -318,16 +318,18 @@ return {
         },
     },
     {
-        "https://github.com/radyz/harpoon.git",
-        dependencies = {
-            "nvim-telescope/telescope.nvim",
-        },
-        branch = "feat/path-display-support",
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        opts = {},
+        dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+        init = function()
+            require("telescope").load_extension("harpoon")
+        end,
         keys = {
             {
                 "mf",
                 function()
-                    require("harpoon.mark").add_file()
+                    require("harpoon"):list():add()
                 end,
                 desc = "[File] Add mark",
                 mode = "n",
@@ -335,21 +337,47 @@ return {
             },
             {
                 "fm",
-                function()
-                    require("telescope").extensions.harpoon.marks(require("telescope.themes").get_dropdown({
-                        initial_mode = "normal",
-                        previewer = false,
-                        path_display = {
-                            shorten = { len = 1, exclude = { 1, -1, -2 } },
-                        },
-                    }))
-                end,
-                desc = "[File] Find mark",
+                ":Telescope harpoon marks previewer=false theme=dropdown<CR>",
+                desc = "[File] Add mark",
                 mode = "n",
                 noremap = true,
             },
         },
     },
+
+    --{
+    --    "https://github.com/radyz/harpoon.git",
+    --    dependencies = {
+    --        "nvim-telescope/telescope.nvim",
+    --    },
+    --    branch = "feat/path-display-support",
+    --    keys = {
+    --        {
+    --            "mf",
+    --            function()
+    --                require("harpoon.mark").add_file()
+    --            end,
+    --            desc = "[File] Add mark",
+    --            mode = "n",
+    --            noremap = true,
+    --        },
+    --        {
+    --            "fm",
+    --            function()
+    --                require("telescope").extensions.harpoon.marks(require("telescope.themes").get_dropdown({
+    --                    initial_mode = "normal",
+    --                    previewer = false,
+    --                    path_display = {
+    --                        shorten = { len = 1, exclude = { 1, -1, -2 } },
+    --                    },
+    --                }))
+    --            end,
+    --            desc = "[File] Find mark",
+    --            mode = "n",
+    --            noremap = true,
+    --        },
+    --    },
+    --},
     {
         "stevearc/dressing.nvim",
         dependencies = {
