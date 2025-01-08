@@ -135,6 +135,9 @@ return {
         },
         keys = {
             { "fh", ":Telescope git_signs theme=ivy initial_mode=normal<CR>", desc = "[Git] File hunks", mode = "n" },
+            { "<leader>hs", ":Gitsigns stage_hunk<CR>", desc = "[Git] Stage hunk", mode = "n" },
+            { "<leader>hr", ":Gitsigns reset_hunk<CR>", desc = "[Git] Reset hunk", mode = "n" },
+            { "<leader>hp", ":Gitsigns preview_hunk<CR>", desc = "[Git] Preview hunk", mode = "n" },
         },
         init = function()
             require("telescope").load_extension("git_signs")
