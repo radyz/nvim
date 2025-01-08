@@ -38,7 +38,7 @@ return {
                     "filename",
                     "aerial",
                 },
-                lualine_x = { "encoding", "fileformat" },
+                lualine_x = { "vim.fn['zoom#statusline']()", "encoding", "fileformat" },
             },
             extensions = { "nvim-tree", "quickfix", "fugitive" },
         },

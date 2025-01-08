@@ -368,4 +368,23 @@ return {
             }
         end,
     },
+    {
+        "sindrets/winshift.nvim",
+        opts = {},
+        commander = {
+            {
+                desc = "[Buffer] Move",
+                cmd = ":WinShift<CR>",
+            },
+        },
+    },
+    {
+        "dhruvasagar/vim-zoom",
+        commander = {
+            {
+                desc = "[Buffer] Zoom",
+                cmd = "<C-W>m<CR>",
+            },
+        },
+    },
 }
