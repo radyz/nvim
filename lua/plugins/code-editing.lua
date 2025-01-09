@@ -4,7 +4,6 @@ return {
     { "https://github.com/mattn/emmet-vim.git", commit = "6c511a8d7d2863066f32e25543e2bb99d505172c" },
     {
         "nvim-treesitter/nvim-treesitter",
-        tag = "v0.9.3",
         dependencies = {
             { "nvim-treesitter/nvim-treesitter-textobjects", commit = "ad8f0a472148c3e0ae9851e26a722ee4e29b1595" },
         },
