@@ -18,7 +18,7 @@
   "friendly-snippets": { "branch": "main", "commit": "efff286dd74c22f731cdec26a70b46e5b203c619" },
   "git-messenger.vim": { "branch": "master", "commit": "edc603d4cda7894a743e383e16c638e206d03148" },
   "gitsigns.nvim": { "branch": "main", "commit": "68114837e81ca16d06514c3a997c9102d1b25c15" },
-  "harpoon": { "branch": "harpoon2", "commit": "a84ab829eaf3678b586609888ef52f7779102263" },
+  "harpoon": { "branch": "fix-truncate-path-preference", "commit": "a8655d41a1fa9b25af7b845a344c2a0aa9252514" },
   "hererocks": { "branch": "master", "commit": "c9c5444dea1e07e005484014a8231aa667be30b6" },
   "hlsearch.nvim": { "branch": "main", "commit": "fdeb60b890d15d9194e8600042e5232ef8c29b0e" },
   "lazy.nvim": { "branch": "main", "commit": "d8f26efd456190241afd1b0f5235fe6fdba13d4a" },

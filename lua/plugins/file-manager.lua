@@ -323,7 +323,7 @@ return {
         opts = {},
         dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
         init = function()
-            require("telescope").load_extension("harpoon")
+            require("telescope").load_extension("harpoon_marks")
         end,
         keys = {
             {
@@ -337,47 +337,21 @@ return {
             },
             {
                 "fm",
-                ":Telescope harpoon marks previewer=false theme=dropdown<CR>",
+                function()
+                    require("telescope").extensions.harpoon_marks.marks(require("telescope.themes").get_ivy({
+                        initial_mode = "normal",
+                        previewer = false,
+                        path_display = {
+                            shorten = { len = 1, exclude = { 1, -1, -2 } },
+                        },
+                    }))
+                end,
                 desc = "[File] Add mark",
                 mode = "n",
                 noremap = true,
             },
         },
     },
-
-    --{
-    --    "https://github.com/radyz/harpoon.git",
-    --    dependencies = {
-    --        "nvim-telescope/telescope.nvim",
-    --    },
-    --    branch = "feat/path-display-support",
-    --    keys = {
-    --        {
-    --            "mf",
-    --            function()
-    --                require("harpoon.mark").add_file()
-    --            end,
-    --            desc = "[File] Add mark",
-    --            mode = "n",
-    --            noremap = true,
-    --        },
-    --        {
-    --            "fm",
-    --            function()
-    --                require("telescope").extensions.harpoon.marks(require("telescope.themes").get_dropdown({
-    --                    initial_mode = "normal",
-    --                    previewer = false,
-    --                    path_display = {
-    --                        shorten = { len = 1, exclude = { 1, -1, -2 } },
-    --                    },
-    --                }))
-    --            end,
-    --            desc = "[File] Find mark",
-    --            mode = "n",
-    --            noremap = true,
-    --        },
-    --    },
-    --},
     {
         "stevearc/dressing.nvim",
         dependencies = {
