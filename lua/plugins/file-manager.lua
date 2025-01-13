@@ -61,6 +61,9 @@ return {
                         ["q"] = "close",
                         ["]"] = "cycle_previewers_next",
                         ["["] = "cycle_previewers_prev",
+                        -- TODO: Look into enabling this
+                        -- https://www.reddit.com/r/neovim/comments/w4qsju/toggle_preview_in_telescope/
+                        --["<C-p>"] = "toggle_preview",
                     },
                 },
                 get_selection_window = function(picker, entry)
