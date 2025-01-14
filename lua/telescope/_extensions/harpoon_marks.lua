@@ -18,31 +18,10 @@ local function filter_empty_string(list)
     return next
 end
 
-local generate_new_finder = function(opts)
+local generate_new_finder = function(entry_maker)
     return finders.new_table({
         results = filter_empty_string(harpoon:list().items),
-        entry_maker = function(entry)
-            local line = entry.value .. ":" .. entry.context.row .. ":" .. entry.context.col
-            local displayer = entry_display.create({
-                separator = " - ",
-                items = {
-                    { remaining = true },
-                },
-            })
-            local make_display = function()
-                return displayer({
-                    utils.transform_path(opts, entry.value),
-                })
-            end
-            return {
-                value = entry,
-                ordinal = line,
-                display = make_display,
-                lnum = entry.row,
-                col = entry.col,
-                filename = entry.value,
-            }
-        end,
+        entry_maker = entry_maker,
     })
 end
 
@@ -70,7 +49,7 @@ local delete_harpoon_mark = function(prompt_bufnr)
     end
 
     local current_picker = action_state.get_current_picker(prompt_bufnr)
-    current_picker:refresh(generate_new_finder(), { reset_prompt = true })
+    current_picker:refresh(generate_new_finder(current_picker.finder.entry_maker), { reset_prompt = true })
 end
 
 local move_mark_up = function(prompt_bufnr)
@@ -107,10 +86,34 @@ return require("telescope").register_extension({
         marks = function(opts)
             opts = opts or {}
 
+            local entry_maker = function(entry)
+                local line = entry.value .. ":" .. entry.context.row .. ":" .. entry.context.col
+                local displayer = entry_display.create({
+                    separator = " - ",
+                    items = {
+                        { remaining = true },
+                    },
+                })
+                local make_display = function()
+                    return displayer({
+                        utils.transform_path(opts, entry.value),
+                    })
+                end
+
+                return {
+                    value = entry,
+                    ordinal = line,
+                    display = make_display,
+                    lnum = entry.row,
+                    col = entry.col,
+                    filename = entry.value,
+                }
+            end
+
             pickers
                 .new(opts, {
                     prompt_title = "harpoon marks",
-                    finder = generate_new_finder(opts),
+                    finder = generate_new_finder(entry_maker),
                     sorter = conf.generic_sorter(opts),
                     previewer = conf.grep_previewer(opts),
                     attach_mappings = function(_, map)
