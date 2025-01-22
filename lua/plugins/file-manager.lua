@@ -52,7 +52,9 @@ return {
 
                 local function wrap_cwd_context(f)
                     return function(node, ...)
-                        node = node or require("nvim-tree.lib").get_node_at_cursor()
+                        local core = require("nvim-tree.core")
+                        local explorer = core.get_explorer()
+                        node = node or explorer["get_node_at_cursor"](explorer, ...)
 
                         local cwd = "."
                         if node.type == "directory" then
