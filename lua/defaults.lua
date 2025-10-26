@@ -8,9 +8,10 @@ vim.opt.more = true
 vim.cmd("set guioptions-=m")
 vim.cmd("set guioptions-=T")
 
+--vim.opt.cursorline = true
+--vim.opt.cursorcolumn = true
+
 -- Performance boosters
-vim.opt.cursorline = true
-vim.opt.cursorcolumn = true
 vim.opt.lazyredraw = true
 vim.opt.re = 1
 vim.opt.showcmd = false
