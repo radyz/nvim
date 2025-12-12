@@ -89,9 +89,6 @@ return {
                 noremap = true,
             },
         },
-        init = function()
-            require("telescope").load_extension("git_logs")
-        end,
     },
     {
         "lewis6991/gitsigns.nvim",
@@ -136,9 +133,6 @@ return {
         keys = {
             { "fh", ":Telescope git_signs theme=ivy initial_mode=normal<CR>", desc = "[Git] File hunks", mode = "n" },
         },
-        init = function()
-            require("telescope").load_extension("git_signs")
-        end,
     },
     {
         "https://github.com/rhysd/git-messenger.vim.git",
