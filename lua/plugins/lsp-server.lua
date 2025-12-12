@@ -171,6 +171,13 @@ return {
                 opts.capabilities = capabilities
                 require("lspconfig")[server].setup(opts)
             end
+
+            require("cmp").setup.filetype({ "sql" }, {
+                sources = {
+                    { name = "vim-dadbod-completion" },
+                    { name = "buffer" },
+                },
+            })
         end,
     },
     {
