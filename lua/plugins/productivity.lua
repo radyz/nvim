@@ -107,9 +107,6 @@ return {
                 cmd = ":Telescope docker theme=ivy<CR>",
             },
         },
-        init = function()
-            require("telescope").load_extension("docker")
-        end,
     },
     {
         "s1n7ax/nvim-window-picker",

@@ -1,11 +1,7 @@
-local utils = require("utils.git")
-
 return {
     {
         "FeiyouG/commander.nvim",
-        dependencies = {
-            "nvim-telescope/telescope.nvim",
-        },
+        commit = "84101e8eb1613a72bbdec655b734f891d8a00694",
         opts = function()
             return {
                 components = {
