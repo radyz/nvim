@@ -54,6 +54,7 @@ vim.cmd("set completeopt-=preview")
 vim.filetype.add({
     extension = {
         http = "http", -- These were being interpreted as .conf files
+        dbout = "dbout", -- For vim-dadbod output
     },
 })
 

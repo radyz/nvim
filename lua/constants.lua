@@ -10,5 +10,6 @@ return {
         "TelescopePrompt",
         "gitmessengerpopup",
         "toggleterm",
+        "dbout",
     },
 }
