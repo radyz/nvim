@@ -74,6 +74,22 @@ return {
                     rust = {
                         require("formatter.filetypes.rust").rustfmt,
                     },
+                    sql = {
+                        function()
+                            return {
+                                exe = "sqlfluff",
+                                args = {
+                                    "format",
+                                    "--dialect=postgres",
+                                    "--disable-progress-bar",
+                                    "--nocolor",
+                                    "-",
+                                },
+                                stdin = true,
+                                ignore_exitcode = false,
+                            }
+                        end,
+                    },
                 },
             }
         end,
@@ -93,6 +109,7 @@ return {
                     "*.html",
                     "*.tf",
                     "*.rs",
+                    "*.sql",
                 },
                 group = vim.api.nvim_create_augroup("FormatAutogroup", {}),
                 command = "FormatWrite",
