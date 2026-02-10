@@ -102,6 +102,7 @@ return {
             require("telescope").load_extension("git_signs")
             require("telescope").load_extension("git_logs")
             require("telescope").load_extension("neoclip")
+            require("telescope").load_extension("dadbod_wrapper")
 
             -- Add line numbering to preview buffers
             vim.cmd("autocmd User TelescopePreviewerLoaded setlocal number")
