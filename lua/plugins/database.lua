@@ -18,6 +18,29 @@ return {
                 ft = { "sql" },
                 mode = { "n", "v" },
             },
+            {
+                "<localleader>p",
+                function()
+                    require("vim-dadbod-wrapper")
+                end,
+                ft = { "dboutpreview" },
+                mode = { "n" },
+            },
+        },
+    },
+    {
+        dir = vim.fn.stdpath("config") .. "/lua/local-plugins/pgsql-tools",
+        keys = {
+            {
+                "<localleader><space>",
+                function()
+                    require("pgsql-tools").inspect()
+                end,
+                ft = { "dbout" },
+                mode = "n",
+                desc = "[PGSQL] Preview",
+                noremap = true,
+            },
         },
     },
 }

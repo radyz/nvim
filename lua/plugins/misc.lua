@@ -32,4 +32,18 @@ return {
         event = "BufRead",
         opts = {},
     },
+    {
+        dir = vim.fn.stdpath("config") .. "/lua/local-plugins/json-tools",
+        keys = {
+            {
+                "<leader>jp",
+                function()
+                    require("json-tools").inspect()
+                end,
+                mode = "v",
+                desc = "[JSON] Preview",
+                noremap = true,
+            },
+        },
+    },
 }
