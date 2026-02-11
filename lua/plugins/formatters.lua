@@ -80,7 +80,6 @@ return {
                                 exe = "sqlfluff",
                                 args = {
                                     "format",
-                                    "--dialect=postgres",
                                     "--disable-progress-bar",
                                     "--nocolor",
                                     "-",
