@@ -52,10 +52,9 @@ return {
                 api.config.mappings.default_on_attach(bufnr)
 
                 -- CUSTOM
-                vim.keymap.set("n", "<C-o>", api.node.run.system, opts("Run System"), { noremap = true })
                 vim.keymap.set(
                     "n",
-                    "f",
+                    "<leader>ff",
                     wrap_cwd_context(function(cwd)
                         require("telescope.builtin").find_files(
                             require("telescope.themes").get_dropdown({ cwd = cwd, previewer = false })
@@ -65,7 +64,7 @@ return {
                 )
                 vim.keymap.set(
                     "n",
-                    "s",
+                    "<leader>fl",
                     wrap_cwd_context(function(cwd)
                         require("telescope.builtin").live_grep({ cwd = cwd })
                     end),
@@ -85,7 +84,7 @@ return {
                 -- Git
                 vim.keymap.set(
                     "n",
-                    "gt",
+                    "<leader>gt",
                     wrap_cwd_context(function(cwd)
                         local function git_branch_yank()
                             local action_state = require("telescope.actions.state")
@@ -112,7 +111,7 @@ return {
 
                 vim.keymap.set(
                     "n",
-                    "gl",
+                    "<leader>gl",
                     wrap_cwd_context(function(cwd)
                         require("telescope").extensions.git_logs.git_logs({
                             initial_mode = "normal",

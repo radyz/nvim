@@ -54,7 +54,7 @@ return {
                 noremap = true,
             },
             {
-                "fgf",
+                "<leader>gff",
                 function()
                     require("telescope.builtin").git_files(require("telescope.themes").get_dropdown({
                         cwd = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", ""),
@@ -66,7 +66,7 @@ return {
                 noremap = true,
             },
             {
-                "fgl",
+                "<leader>gfl",
                 function()
                     require("telescope.builtin").live_grep({
                         cwd = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", ""),
@@ -77,7 +77,7 @@ return {
                 noremap = true,
             },
             {
-                "fgw",
+                "<leader>gfw",
                 function()
                     require("telescope.builtin").grep_string({
                         initial_mode = "normal",
