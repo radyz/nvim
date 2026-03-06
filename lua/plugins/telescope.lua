@@ -74,7 +74,7 @@ return {
                 mode = "n",
                 noremap = true,
             },
-            { "<leader>fl", ":Telescope live_grep<CR>", desc = "[File] Find text", mode = "n", noremap = true },
+            { "<leader>ft", ":Telescope live_grep<CR>", desc = "[File] Find text", mode = "n", noremap = true },
             {
                 "<leader>fw",
                 ":Telescope grep_string initial_mode=normal<CR>",
@@ -92,6 +92,13 @@ return {
             {
                 "<leader>fd",
                 ":Telescope diagnostics bufnr=0 initial_mode=normal theme=ivy<CR>",
+                desc = "[File] Find diagnostics",
+                mode = "n",
+                noremap = true,
+            },
+            {
+                "<leader>fr",
+                ":Telescope registers initial_mode=normal theme=dropdown<CR>",
                 desc = "[File] Find diagnostics",
                 mode = "n",
                 noremap = true,

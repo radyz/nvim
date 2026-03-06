@@ -64,11 +64,11 @@ return {
                 )
                 vim.keymap.set(
                     "n",
-                    "<leader>fl",
+                    "<leader>ft",
                     wrap_cwd_context(function(cwd)
                         require("telescope.builtin").live_grep({ cwd = cwd })
                     end),
-                    opts("Search text")
+                    opts("Find text")
                 )
 
                 vim.keymap.set(
