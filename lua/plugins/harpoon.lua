@@ -4,7 +4,7 @@ return {
         branch = "feat/path-display-support",
         keys = {
             {
-                "mf",
+                "<leader>mf",
                 function()
                     require("harpoon.mark").add_file()
                 end,
@@ -13,7 +13,7 @@ return {
                 noremap = true,
             },
             {
-                "fm",
+                "<leader>fm",
                 function()
                     require("telescope").extensions.harpoon.marks(require("telescope.themes").get_dropdown({
                         initial_mode = "normal",
