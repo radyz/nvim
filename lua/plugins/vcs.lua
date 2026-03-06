@@ -15,6 +15,12 @@ return {
             {
                 "<leader>gt",
                 function()
+                    local git_dir = vim.fn.FugitiveGitDir()
+                    if git_dir == "" then
+                        vim.notify("Git directory not found", vim.log.levels.ERROR)
+                        return
+                    end
+
                     local function git_branch_yank()
                         local action_state = require("telescope.actions.state")
                         local selection = action_state.get_selected_entry()
@@ -23,7 +29,7 @@ return {
                     end
 
                     require("telescope.builtin").git_branches(require("telescope.themes").get_dropdown({
-                        cwd = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", ""),
+                        cwd = vim.fn.substitute(git_dir, ".git", "", ""),
                         initial_mode = "normal",
                         previewer = false,
                         layout_config = {
@@ -42,12 +48,16 @@ return {
             {
                 "<leader>gl",
                 function()
-                    local opts = {
-                        initial_mode = "normal",
-                        cwd = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", ""),
-                    }
+                    local git_dir = vim.fn.FugitiveGitDir()
+                    if git_dir == "" then
+                        vim.notify("Git directory not found", vim.log.levels.ERROR)
+                        return
+                    end
 
-                    require("telescope").extensions.git_logs.git_logs(opts)
+                    require("telescope").extensions.git_logs.git_logs({
+                        initial_mode = "normal",
+                        cwd = vim.fn.substitute(git_dir, ".git", "", ""),
+                    })
                 end,
                 desc = "[Git] Find logs",
                 mode = "n",
@@ -56,8 +66,14 @@ return {
             {
                 "<leader>gff",
                 function()
+                    local git_dir = vim.fn.FugitiveGitDir()
+                    if git_dir == "" then
+                        vim.notify("Git directory not found", vim.log.levels.ERROR)
+                        return
+                    end
+
                     require("telescope.builtin").git_files(require("telescope.themes").get_dropdown({
-                        cwd = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", ""),
+                        cwd = vim.fn.substitute(git_dir, ".git", "", ""),
                         previewer = false,
                     }))
                 end,
@@ -68,8 +84,14 @@ return {
             {
                 "<leader>gfl",
                 function()
+                    local git_dir = vim.fn.FugitiveGitDir()
+                    if git_dir == "" then
+                        vim.notify("Git directory not found", vim.log.levels.ERROR)
+                        return
+                    end
+
                     require("telescope.builtin").live_grep({
-                        cwd = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", ""),
+                        cwd = vim.fn.substitute(git_dir, ".git", "", ""),
                     })
                 end,
                 desc = "[Git] Find text",
@@ -79,9 +101,15 @@ return {
             {
                 "<leader>gfw",
                 function()
+                    local git_dir = vim.fn.FugitiveGitDir()
+                    if git_dir == "" then
+                        vim.notify("Git directory not found", vim.log.levels.ERROR)
+                        return
+                    end
+
                     require("telescope.builtin").grep_string({
                         initial_mode = "normal",
-                        cwd = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", ""),
+                        cwd = vim.fn.substitute(git_dir, ".git", "", ""),
                     })
                 end,
                 desc = "[Git] Find word",
