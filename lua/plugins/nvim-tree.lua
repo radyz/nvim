@@ -81,6 +81,46 @@ return {
                     end),
                     opts("Search & Replace")
                 )
+
+                -- Git
+                vim.keymap.set(
+                    "n",
+                    "gt",
+                    wrap_cwd_context(function(cwd)
+                        local function git_branch_yank()
+                            local action_state = require("telescope.actions.state")
+                            local selection = action_state.get_selected_entry()
+
+                            vim.fn.setreg("+", selection.name)
+                        end
+
+                        require("telescope.builtin").git_branches(require("telescope.themes").get_dropdown({
+                            cwd = vim.fn.substitute(vim.fn.FugitiveExtractGitDir(cwd), ".git", "", ""),
+                            initial_mode = "normal",
+                            previewer = false,
+                            layout_config = {
+                                width = 0.75,
+                            },
+                            attach_mappings = function(_, map)
+                                map("n", "yy", git_branch_yank)
+                                return true
+                            end,
+                        }))
+                    end),
+                    opts("Git branch")
+                )
+
+                vim.keymap.set(
+                    "n",
+                    "gl",
+                    wrap_cwd_context(function(cwd)
+                        require("telescope").extensions.git_logs.git_logs({
+                            initial_mode = "normal",
+                            cwd = vim.fn.substitute(vim.fn.FugitiveExtractGitDir(cwd), ".git", "", ""),
+                        })
+                    end),
+                    opts("Git logs")
+                )
             end,
         },
         keys = {
