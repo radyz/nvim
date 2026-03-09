@@ -82,7 +82,7 @@ return {
                 noremap = true,
             },
             {
-                "<leader>gfl",
+                "<leader>gft",
                 function()
                     local git_dir = vim.fn.FugitiveGitDir()
                     if git_dir == "" then
