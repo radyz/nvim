@@ -7,6 +7,9 @@ return {
             { "nvim-tree/nvim-web-devicons", commit = "8dcb311b0c92d460fac00eac706abd43d94d68af" },
         },
         opts = {
+            notify = {
+                threshold = vim.log.levels.WARN,
+            },
             view = {
                 adaptive_size = true,
             },
