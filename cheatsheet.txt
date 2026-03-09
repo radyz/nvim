@@ -13,9 +13,6 @@ Show the highlight groups under the cursor | :Inspect
 Show the parsed syntax tree | :InspectTree
 Open the Live Query Editor | :TSEditQuery 
 
-## Telescope
-Create git branch | Type the name of the new branch and then the mapping to create it
-
 ## Misc
 Clear search hightlight | :noh
 Disable auto command | :noa <...>
@@ -27,3 +24,13 @@ Toggle fold recursively | zA
 
 ## CMD
 Find process using port | sudo lsof -i :<port>
+
+## Windows
+Force buffer delete | :bd!<CR>
+Split the current window horizontally (top/bottom) | <C-w>s<CR>
+Split the current window vertically (left/right) | <C-w>v<CR>
+Open a new, empty buffer in a horizontal split | <C-w>n<CR>
+Make all windows equal height and width (the "reset" button for messy layouts). |<C-w>=<CR>
+Close the current window | <C-w>c<CR>
+"Only"—close every window except the one you are currently in | <C-w>o<CR> 
+Quit the current window (this will exit Vim if it's the last window)| <C-w>q<CR> 

@@ -17,11 +17,6 @@ vim.keymap.set("n", "<Leader>tu", "<esc>viwU", { noremap = true })
 vim.keymap.set("n", "j", "gj", { noremap = true })
 vim.keymap.set("n", "k", "gk", { noremap = true })
 
-vim.keymap.set("n", "<C-X>", ":bd!<CR>", { noremap = true })
--- Make current buffer only buffer in split modes
-vim.keymap.set("n", "<Leader>o", "<C-w><C-o>", { noremap = true })
--- Undo buffer
-vim.keymap.set("n", "<Leader>q", "<C-w>q", { noremap = true })
 -- Close buffer without losing splits
 vim.keymap.set("n", "<C-c>", ":bp\\|bd #<CR>", { noremap = true })
 
