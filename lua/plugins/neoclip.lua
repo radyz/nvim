@@ -19,5 +19,11 @@ return {
                 },
             },
         },
+        commander = {
+            {
+                desc = "[Misc] Register history",
+                cmd = ":Telescope neoclip initial_mode=normal<CR>",
+            },
+        },
     },
 }

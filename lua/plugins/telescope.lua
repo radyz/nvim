@@ -96,13 +96,6 @@ return {
                 mode = "n",
                 noremap = true,
             },
-            {
-                "<leader>fr",
-                ":Telescope registers initial_mode=normal theme=dropdown<CR>",
-                desc = "[File] Find diagnostics",
-                mode = "n",
-                noremap = true,
-            },
         },
         init = function()
             require("telescope").load_extension("fzf")
