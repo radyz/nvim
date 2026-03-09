@@ -138,24 +138,11 @@ return {
 
                 vim.keymap.set(
                     "n",
-                    "<leader>gp",
-                    wrap_cwd_context(function(cwd)
-                        local git_dir = vim.fn.FugitiveExtractGitDir(cwd)
-                        if git_dir == "" then
-                            vim.notify("Git directory not found", vim.log.levels.ERROR)
-                            return
-                        end
-
-                        vim.fn.FugitiveDetect(git_dir)
-                        vim.cmd("Git pull --rebase")
-                    end),
-                    opts("Git pull")
-                )
-
-                vim.keymap.set(
-                    "n",
                     "<leader>gs",
                     wrap_cwd_context(function(cwd)
+                        -- Clear existing buffer-local Fugitive variables :/
+                        vim.b.git_dir = nil
+
                         local git_dir = vim.fn.FugitiveExtractGitDir(cwd)
                         if git_dir == "" then
                             vim.notify("Git directory not found", vim.log.levels.ERROR)
