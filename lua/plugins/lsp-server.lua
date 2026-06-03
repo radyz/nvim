@@ -72,7 +72,24 @@ return {
 
             for server, opts in pairs(lsp_servers) do
                 opts.capabilities = capabilities
-                vim.lsp.config(server, opts)
+                vim.lsp.config(server, {
+                    before_init = function(_, config)
+                        local codesettings = require("codesettings")
+                        codesettings
+                            -- starts from the plugin's global config as a base
+                            .loader()
+                            -- override the root directory from the LSP config, which might be a sub-root
+                            :root_dir(
+                                config.root_dir
+                            )
+                            -- merge local settings according to the configuration specified
+                            -- by this `ConfigBuilder`
+                            :with_local_settings(
+                                config.name,
+                                config
+                            )
+                    end,
+                })
                 vim.lsp.enable(server)
             end
         end,
@@ -82,5 +99,9 @@ return {
         commit = "7d3bb0a641f516f1c7fd2e47852580dadbd7a430",
         event = "InsertEnter",
         opts = {},
+    },
+    {
+        "mrjones2014/codesettings.nvim",
+        tag = "v1.6.7",
     },
 }
