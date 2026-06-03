@@ -46,17 +46,4 @@ return {
             },
         },
     },
-    {
-        "rcarriga/nvim-notify",
-        tag = "v3.15.0",
-        init = function()
-            vim.notify = require("notify")
-        end,
-        commander = {
-            {
-                desc = "[Misc] Notifications history",
-                cmd = ":Telescope notify mode=normal theme=ivy<CR>",
-            },
-        },
-    },
 }
