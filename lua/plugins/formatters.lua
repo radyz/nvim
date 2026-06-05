@@ -72,7 +72,13 @@ return {
                         end,
                     },
                     rust = {
-                        require("formatter.filetypes.rust").rustfmt,
+                        function()
+                            return {
+                                exe = "rustfmt",
+                                args = { "--edition 2024" },
+                                stdin = true,
+                            }
+                        end,
                     },
                     sql = {
                         function()
