@@ -57,6 +57,12 @@ return {
                 rust_analyzer = {
                     settings = {
                         ["rust-analyzer"] = {
+                            cargo = {
+                                targetDir = true,
+                            },
+                            cachePriming = {
+                                enable = false,
+                            },
                             check = {
                                 command = "clippy",
                                 extraArgs = {
@@ -103,5 +109,8 @@ return {
     {
         "mrjones2014/codesettings.nvim",
         tag = "v1.6.7",
+    },
+    {
+        dir = vim.fn.stdpath("config") .. "/lua/local-plugins/rust-tools",
     },
 }
