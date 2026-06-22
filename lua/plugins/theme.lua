@@ -27,14 +27,14 @@ return {
             extensions = { "nvim-tree", "quickfix", "fugitive" },
         },
     },
-    {
-        "https://github.com/RRethy/vim-illuminate.git",
-        config = function()
-            require("illuminate").configure({
-                filetypes_denylist = constants.ignored_buffer_types,
-            })
-        end,
-    },
+    --{
+    --    "https://github.com/RRethy/vim-illuminate.git",
+    --    config = function()
+    --        require("illuminate").configure({
+    --            filetypes_denylist = constants.ignored_buffer_types,
+    --        })
+    --    end,
+    --},
     {
         "https://github.com/whatyouhide/vim-lengthmatters.git",
         config = function()

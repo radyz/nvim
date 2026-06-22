@@ -1,7 +1,7 @@
 return {
     {
         "stevearc/aerial.nvim",
-        commit = "8bb8697d180681746da41bef5c8691d04443af36",
+        tag = "v4.0.0",
         opts = function()
             local List = require("plenary.collections.py_list")
             local constants = require("constants")

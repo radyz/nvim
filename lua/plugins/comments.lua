@@ -1,5 +1,5 @@
 return {
-    { "JoosepAlviste/nvim-ts-context-commentstring", commit = "1b212c2eee76d787bbea6aa5e92a2b534e7b4f8f", opts = {} },
+    { "JoosepAlviste/nvim-ts-context-commentstring", commit = "6141a40173c6efa98242dc951ed4b6f892c97027", opts = {} },
     {
         "numToStr/Comment.nvim",
         commit = "e30b7f2008e52442154b66f7c519bfd2f1e32acb",
