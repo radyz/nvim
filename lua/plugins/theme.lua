@@ -2,10 +2,13 @@ local constants = require("constants")
 
 return {
     {
-        "morhetz/gruvbox",
-        config = function()
-            vim.o.background = "light"
-            vim.cmd.colorscheme("gruvbox")
+        "Mofiqul/vscode.nvim",
+        lazy = false, -- make sure we load this during startup
+
+        priority = 1000, -- make sure to load this before all the other start plugins
+        init = function()
+            vim.opt.background = "dark"
+            require("vscode").load()
         end,
     },
     {
@@ -15,7 +18,7 @@ return {
         },
         opts = {
             options = {
-                theme = "gruvbox",
+                theme = "vscode",
             },
             sections = {
                 lualine_c = {
@@ -27,14 +30,14 @@ return {
             extensions = { "nvim-tree", "quickfix", "fugitive" },
         },
     },
-    --{
-    --    "https://github.com/RRethy/vim-illuminate.git",
-    --    config = function()
-    --        require("illuminate").configure({
-    --            filetypes_denylist = constants.ignored_buffer_types,
-    --        })
-    --    end,
-    --},
+    {
+        "https://github.com/RRethy/vim-illuminate.git",
+        config = function()
+            require("illuminate").configure({
+                filetypes_denylist = constants.ignored_buffer_types,
+            })
+        end,
+    },
     {
         "https://github.com/whatyouhide/vim-lengthmatters.git",
         config = function()
