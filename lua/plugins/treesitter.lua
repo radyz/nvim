@@ -23,10 +23,8 @@ return {
                 "markdown_inline",
                 "sql",
             })
-        end,
-        init = function()
-            local ts = require("vim.treesitter")
 
+            local ts = require("vim.treesitter")
             ts.query.add_directive("set_if_eq!", function(match, pattern, bufnr, predicate, metadata)
                 local _, key, capture_id, rhs = unpack(predicate)
 
