@@ -11,17 +11,6 @@ return {
                 ignore = {
                     filetypes = List({ "markdown" }):concat(constants.ignored_buffer_types),
                 },
-                post_parse_symbol = function(_, item, ctx)
-                    if ctx.backend_name == "treesitter" then
-                        if ctx.match.private then
-                            item.name = " " .. item.name
-                        elseif ctx.match.protected then
-                            item.name = " " .. item.name
-                        end
-                    end
-
-                    return true
-                end,
                 float = {
                     override = function(conf)
                         conf.width = 40
