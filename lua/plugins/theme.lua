@@ -2,13 +2,20 @@ local constants = require("constants")
 
 return {
     {
-        "Mofiqul/vscode.nvim",
-        lazy = false, -- make sure we load this during startup
-
+        "projekt0n/github-nvim-theme",
+        name = "github-theme",
+        lazy = false, -- make sure we load this during startup if it is your main colorscheme
         priority = 1000, -- make sure to load this before all the other start plugins
-        init = function()
-            vim.opt.background = "dark"
-            require("vscode").load()
+        config = function()
+            require("github-theme").setup({
+                groups = {
+                    all = {
+                        DiagnosticFloatingHint = { fg = "#79c0ff" },
+                    },
+                },
+            })
+
+            vim.cmd("colorscheme github_light_default")
         end,
     },
     {
@@ -18,7 +25,7 @@ return {
         },
         opts = {
             options = {
-                theme = "vscode",
+                theme = "github",
             },
             sections = {
                 lualine_c = {

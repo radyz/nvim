@@ -24,3 +24,7 @@ vim.opt.rtp:prepend(lazypath)
 require("defaults")
 require("mappings")
 require("lazy").setup("plugins")
+
+-- Must be set after themes/easymotion plugins have finalized.
+-- EasyMotion overrides.
+vim.api.nvim_set_hl(0, "EasyMotionIncSearch", { fg = "green", bg = "#dafbe1", bold = true })
