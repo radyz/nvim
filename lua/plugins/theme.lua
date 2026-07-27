@@ -11,6 +11,14 @@ return {
                 groups = {
                     all = {
                         DiagnosticFloatingHint = { fg = "#79c0ff" },
+
+                        -- ts_ls tags identifiers whose TYPE is a class (e.g.
+                        -- Effect Schema values and object keys holding them)
+                        -- as @lsp.type.class, which the theme links to
+                        -- @function (purple) and overrides treesitter's blue
+                        -- @variable.member. Clear it so treesitter wins, like
+                        -- the theme already does for @lsp.type.property.
+                        ["@lsp.type.class"] = {},
                     },
                 },
             })
