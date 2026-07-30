@@ -19,6 +19,7 @@ return {
                 "c_sharp",
                 "python",
                 "terraform",
+                "hcl",
                 "markdown",
                 "markdown_inline",
                 "sql",
