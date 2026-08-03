@@ -35,3 +35,6 @@ Make all windows equal height and width (the "reset" button for messy layouts). 
 Close the current window | <C-w>c<CR>
 "Only"—close every window except the one you are currently in | <C-w>o<CR> 
 Quit the current window (this will exit Vim if it's the last window)| <C-w>q<CR> 
+
+## Registers
+Clear all registers | :lua for _, r in ipairs({'"', '-', '/', '*', '+'}) do pcall(vim.fn.setreg, r, '') end for i=0,9 do pcall(vim.fn.setreg, tostring(i), '') end for i=32,126 do pcall(vim.fn.setreg, string.char(i), '') end
