@@ -60,16 +60,7 @@ return {
                         end,
                     },
                     terraform = {
-                        function()
-                            return {
-                                exe = "terraform",
-                                args = {
-                                    "fmt",
-                                    "-",
-                                },
-                                stdin = true,
-                            }
-                        end,
+                        require("formatter.filetypes.terraform").terraformfmt,
                     },
                     rust = {
                         function()
