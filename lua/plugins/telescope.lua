@@ -56,6 +56,12 @@ return {
                         },
                     },
                 },
+                live_grep = {
+                    additional_args = { "--hidden" },
+                },
+                grep_string = {
+                    additional_args = { "--hidden" },
+                },
             },
             extensions = {
                 fzf = {
