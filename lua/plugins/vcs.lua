@@ -192,6 +192,7 @@ return {
             local actions = require("diffview.actions")
 
             return {
+                enhanced_diff_hl = true,
                 keymaps = {
                     view = {
                         {
