@@ -1,16 +1,13 @@
 return {
     {
-        "mistweaverco/kulala.nvim",
-        ft = { "http" },
-        opts = {},
-        keys = {
-            {
-                "<localleader>r",
-                function()
-                    require("kulala").run()
-                end,
-                mode = { "n", "v" },
-                desc = "Send request",
+        "oysandvik94/curl.nvim",
+        cmd = { "CurlOpen" },
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        config = {
+            mappings = {
+                execute_curl = "<CR>",
             },
         },
     },
